@@ -11,12 +11,16 @@
 </head>
 
 <body>
-    <div class="editor">
-        <div class="butt" id="draw">draw</div>
-        <div class="butt" id="line">line</div>
-        <div class="canvas"></div>
-    </div>
 
+    <canvas id="pixel" width="500" height="500">
+        Your Browser doesn't support canvas.
+    </canvas>
+
+    <input type="number" id="size" value=40 min=10 step=10 max=500 default=50 onchange=drawGrid()>
+    <button class="line" onclick=selectTool(1)>line</button>
+    <button class="draw" onclick=selectTool(2)>draw</button>
+
+    <button class="square"></button>
     <script src="script.js"></script>
 
 </body>
