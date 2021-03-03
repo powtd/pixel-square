@@ -1,7 +1,24 @@
-#pixel {
-  border: solid 1px grey;
+canvas {
+  background-color: aquamarine;
 }
-html {
-  text-align: center;
-  font-family: Consolas;
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid black;
+  display: flex;
+  flex-direction: row;
+}
+.tools {
+  display: flex;
+  flex-direction: column;
+}
+.butt {
+  background-color: crimson;
+  padding: 1vw;
+  margin: 1vw;
+}
+.butt:active() {
+  background-color: darkcyan;
 }
