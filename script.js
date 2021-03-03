@@ -7,21 +7,14 @@ pp = '#3b395c'
 black = '#000'
 const squareSize = 15;
 
-
 function clickbutt(v) {
     var xfrom, yfrom;
     let toolNumber = v
     console.log(toolNumber)
 
-
-    //if (toolNumber == 'draw') {
-    //canvas.addEventListener('click', click)
     canvas.addEventListener('mousedown', down)
     canvas.addEventListener('mousedown', down1)
     canvas.addEventListener('mouseup', up)
-    //}
-
-
 
     function down1(event) {
         loc = getMouseCoords(event)
@@ -37,15 +30,12 @@ function clickbutt(v) {
         canvas.addEventListener('mousemove', m)
         xfrom = Math.floor(loc.x / squareSize);
         yfrom = Math.floor(loc.y / squareSize);
-        //drawSquare(xfrom * squareSize, yfrom * squareSize, squareSize, yellow)
     }
 
     function m(event) { // ลากเม้าส์
         locMove = getMouseCoords(event)
         let x = Math.floor(locMove.x / squareSize);
         let y = Math.floor(locMove.y / squareSize);
-
-        //console.log(xfrom, x)
 
         if (toolNumber == 'draw') {
             drawSquare(x * squareSize, y * squareSize, squareSize, black)
@@ -54,13 +44,10 @@ function clickbutt(v) {
             drawGrid()
             for (let z = xfrom; z <= x; z++) {
                 for (let a = yfrom; a < y; a++) {
-
                     drawSquare(z * squareSize, yfrom * squareSize, squareSize, black)
                     drawSquare(xfrom * squareSize, a * squareSize, squareSize, black)
                     drawSquare(x * squareSize, a * squareSize, squareSize, black)
                     drawSquare(z * squareSize, y * squareSize, squareSize, black)
-
-
                     //console.log('re')
                 }
             }
@@ -101,7 +88,6 @@ function clickbutt(v) {
                         }
                         px = px + 2 * (dy1 - dx1);
                     }
-
                     drawSquare(xx * squareSize, yy * squareSize, squareSize, black)
                 }
             } else {
@@ -157,7 +143,6 @@ function clickbutt(v) {
         }
     }
 
-
     function up() { //ยกเลิกคลิก
         canvas.removeEventListener('mousemove', m)
         canvas.removeEventListener('mousedown', down)
@@ -179,7 +164,6 @@ function drawSquare(x, y, w, color) {
 }
 
 function drawGrid() {
-    //const squareSize = 35;
 
     for (var y = 0; y < (canvas.height / squareSize); y++) {
         for (var x = 0; x < (canvas.width / squareSize); x++) {
@@ -187,28 +171,21 @@ function drawGrid() {
             if (y % 2 == 0) {
                 if (x % 2 == 0) {
                     drawSquare(x * squareSize, y * squareSize, squareSize, gray)
-
                 }
                 else {
                     drawSquare(x * squareSize, y * squareSize, squareSize, white)
-
                 }
             }
             else {
                 if (x % 2 == 0) {
                     drawSquare(x * squareSize, y * squareSize, squareSize, white)
-
                 }
                 else {
                     drawSquare(x * squareSize, y * squareSize, squareSize, gray)
-
                 }
             }
         }
-
     }
-
     //drawState()
-
 }
 drawGrid()
