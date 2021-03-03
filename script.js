@@ -1,14 +1,11 @@
 var canvas = document.querySelector('canvas')
 c = canvas.getContext("2d")
 
-blue = '#ABCDEF'
 white = '#FCFCFC'
-yellow = 'rgba(255, 255, 0, 0.75)'
-red = '#FF0000'
 gray = '#D3D3D3'
 pp = '#3b395c'
 black = '#000'
-const squareSize = 25;
+const squareSize = 15;
 
 
 function clickbutt(v) {
@@ -31,7 +28,7 @@ function clickbutt(v) {
 
         xfrom = Math.floor(loc.x / squareSize);
         yfrom = Math.floor(loc.y / squareSize);
-        drawSquare(xfrom * squareSize, yfrom * squareSize, squareSize, yellow)
+        drawSquare(xfrom * squareSize, yfrom * squareSize, squareSize, black)
     }
 
 
@@ -51,17 +48,17 @@ function clickbutt(v) {
         //console.log(xfrom, x)
 
         if (toolNumber == 'draw') {
-            drawSquare(x * squareSize, y * squareSize, squareSize, yellow)
+            drawSquare(x * squareSize, y * squareSize, squareSize, black)
         }
         if (toolNumber == 'square') {
             drawGrid()
             for (let z = xfrom; z <= x; z++) {
                 for (let a = yfrom; a < y; a++) {
 
-                    drawSquare(z * squareSize, yfrom * squareSize, squareSize, red)
-                    drawSquare(xfrom * squareSize, a * squareSize, squareSize, red)
-                    drawSquare(x * squareSize, a * squareSize, squareSize, red)
-                    drawSquare(z * squareSize, y * squareSize, squareSize, red)
+                    drawSquare(z * squareSize, yfrom * squareSize, squareSize, black)
+                    drawSquare(xfrom * squareSize, a * squareSize, squareSize, black)
+                    drawSquare(x * squareSize, a * squareSize, squareSize, black)
+                    drawSquare(z * squareSize, y * squareSize, squareSize, black)
 
 
                     //console.log('re')
@@ -133,22 +130,32 @@ function clickbutt(v) {
             }
         }
         if (toolNumber == 'circle') {
-            let r = Math.floor(dist(xfrom, yfrom, x, y));
+            let r = x - xfrom;
+            var zero = 0;
+            var radiusError = 1 - r;
             drawGrid()
-            for (let a = yfrom - r; a <= yfrom + r; a++) {
-                for (let b = xfrom - r; b <= xfrom + r; b++) {
-                    if (Math.floor(dist(xfrom, yfrom, b, a)) <= r) {
-                        drawSquare(b * squareSize, a * squareSize, squareSize, black)
-                    }
+            console.log(xfrom, x, r)
+            while (r >= zero) {
+                drawSquare((r + xfrom) * squareSize, (zero + yfrom) * squareSize, squareSize, black)
+                drawSquare((zero + xfrom) * squareSize, (r + yfrom) * squareSize, squareSize, black)
+                drawSquare((-r + xfrom) * squareSize, (zero + yfrom) * squareSize, squareSize, black)
+                drawSquare((-zero + xfrom) * squareSize, (r + yfrom) * squareSize, squareSize, black)
+                drawSquare((-r + xfrom) * squareSize, (-zero + yfrom) * squareSize, squareSize, black)
+                drawSquare((-zero + xfrom) * squareSize, (-r + yfrom) * squareSize, squareSize, black)
+                drawSquare((r + xfrom) * squareSize, (-zero + yfrom) * squareSize, squareSize, black)
+                drawSquare((zero + xfrom) * squareSize, (-r + yfrom) * squareSize, squareSize, black)
+                zero++;
+
+                if (radiusError < 0) {
+                    radiusError += 2 * zero + 1;
+                }
+                else {
+                    r--;
+                    radiusError += 2 * (zero - r + 1);
                 }
             }
         }
     }
-
-    function dist(x1, y1, x2, y2) {
-        return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
-    }
-
 
 
     function up() { //ยกเลิกคลิก
@@ -156,18 +163,12 @@ function clickbutt(v) {
         canvas.removeEventListener('mousedown', down)
     }
 
-
-
     function getMouseCoords(event) {
         rect = canvas.getBoundingClientRect()
         x = event.clientX - rect.left
         y = event.clientY - rect.top
         return { x: x, y: y }
     }
-
-
-
-
 }
 
 //-------------------------------
