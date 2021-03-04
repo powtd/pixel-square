@@ -32,7 +32,7 @@ function clickbutt(v) {
         yfrom = Math.floor(loc.y / squareSize);
     }
 
-    function m(event) { // ลากเม้าส์
+    function m(event) { // moving 
         locMove = getMouseCoords(event)
         let x = Math.floor(locMove.x / squareSize);
         let y = Math.floor(locMove.y / squareSize);

@@ -25,4 +25,5 @@ body {
   text-align: center;
   color: #fff;
   border-radius: 5px;
+  cursor: pointer;
 }
