@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-firestore.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="asset/css/style_editor.css">
+
+
+    <title>Editor</title>
+</head>
+
+<body>
+
+    <div id="popDiv" class="ontop">
+        <div id="popup">
+            <a href="#" onClick="hide('popDiv')">X</a>
+            <span>NEW PIXEL</span>
+            <div style="margin: 30px 0;">
+                <span style="font-size: .8em;">SIZE</span>
+                <input id="inputCanvasSize" type="number" value=50 min=10 max=85>
+            </div>
+            <button class="create" onClick="createCanvas()">Create</button>
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+    <div class="App">
+        <div class='content'>
+
+
+            <canvas id="canvas" width="550" height="550">
+                Your Browser doesn't support canvas.
+            </canvas>
+
+
+
+
+
+            <nav class="nav">
+                <ul class="menu">
+                    <li class="menu-item">
+                        <a href="index.html" class="menu-link">PIXELSQUARE EDITOR </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">File</a>
+                        <ul class="menu submenu">
+                            <li class="menu-item">
+                                <a href="#" onClick="pop('popDiv')" class="menu-link" id="new">New</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="#" id="downloader" onclick="saveImg()" download="image.png"
+                                    class="menu-link">Save</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="index.html" class="menu-link">Exit</a>
+
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <input type="text" class="menu-link form" id="InputName" placeholder="name">
+                    </li>
+                    <li class="menu-item">
+                        <input type="number" class="menu-link form" id="InputPrice" placeholder="price">
+
+                    </li>
+
+                </ul>
+            </nav>
+
+
+            <div class='tools__bar'>
+                <div class='tool' onclick="clickbutt('draw')"><span class="material-icons">mode</span></div>
+                <div class='tool' onclick="clickbutt('line')"><span class="material-icons">horizontal_rule</span></div>
+                <div class='tool' onclick="clickbutt('square')"><span class="material-icons">crop_3_2</span></div>
+                <div class='tool' onclick="clickbutt('circle')"><span
+                        class="material-icons">radio_button_unchecked</span></div>
+
+            </div>
+
+
+
+            <div class="color__pallette">
+                <div>
+                    <section id="sec2">
+                        <div id="view" class="center"></div>
+                        <div id="cont1"></div>
+                    </section>
+
+                    <section id="sec1">
+                        <input type="range" class="inp1" id="inp1" value="171" max="360">
+                        <input type="range" class="inp1" id="inp2" value="100" max="100">
+                        <input type="range" class="inp1 " id="inp3" max="100">
+                    </section>
+                    
+                </div>
+                
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyCLRkVphKqKyqP5fszclKkoZ9yDdmA-mI4",
+            authDomain: "pixelsquare-e4b58.firebaseapp.com",
+            projectId: "pixelsquare-e4b58",
+            storageBucket: "pixelsquare-e4b58.appspot.com",
+            messagingSenderId: "375537075367",
+            appId: "1:375537075367:web:0be9335b6c0c75218bc782"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+
+        var db = firebase.firestore();
+    </script>
+    <script src="index.js"></script>
+
+</body>
+
+</html>
